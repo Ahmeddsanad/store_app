@@ -11,12 +11,19 @@ class AllProductsService {
 
     http.Response response = await http.get(url);
 
-    List<dynamic> data = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      List<dynamic> data = jsonDecode(response.body);
 
-    List<ProductModel> ProductList = [];
+      List<ProductModel> ProductList = [];
 
-    for (int i = 0; i < data.length; i++) {
-      ProductList.add(ProductModel.fromJson(data[i]));
+      for (int i = 0; i < data.length; i++) {
+        ProductList.add(ProductModel.fromJson(data[i]));
+      }
+
+      return ProductList;
+    } else {
+      throw Exception(
+          'there is a problem with status code ${response.statusCode}');
     }
 
     // same the above
@@ -25,7 +32,5 @@ class AllProductsService {
     //     ProductList.add(ProductModel.fromJson(data[element]));
     //   },
     // );
-
-    return ProductList;
   }
 }
