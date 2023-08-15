@@ -16,9 +16,7 @@ class api {
   }
 
   Future<dynamic> post(
-      {required String url,
-      @required dynamic body,
-      @required String? token}) async {
+      {required String url, @required dynamic body, String? token}) async {
     Map<String, String> headers = {};
 
     if (token != null) {
@@ -33,8 +31,13 @@ class api {
       headers: headers,
     );
 
-    Map<String, dynamic> data = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data = jsonDecode(response.body);
 
-    return data;
+      return data;
+    } else {
+      throw Exception(
+          'there is a problem with status code ${response.statusCode} with body ${jsonDecode(response.body)}');
+    }
   }
 }
