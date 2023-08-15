@@ -128,6 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
           }, headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Bearer {token here}',
           });
 
           print(response.body);
