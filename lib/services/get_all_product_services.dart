@@ -1,31 +1,21 @@
 import 'dart:convert';
 
+import 'package:store_app/helper/api.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:http/http.dart' as http;
 
 class AllProductsService {
   Future<List<ProductModel>> getAllProduct() async {
-    String BaseURL = 'https://fakestoreapi.com';
+    List<dynamic> data =
+        await api().get(url: 'https://fakestoreapi.com/products');
 
-    Uri url = Uri.parse('$BaseURL/products');
+    List<ProductModel> ProductList = [];
 
-    http.Response response = await http.get(url);
-
-    if (response.statusCode == 200) {
-      List<dynamic> data = jsonDecode(response.body);
-
-      List<ProductModel> ProductList = [];
-
-      for (int i = 0; i < data.length; i++) {
-        ProductList.add(ProductModel.fromJson(data[i]));
-      }
-
-      return ProductList;
-    } else {
-      throw Exception(
-          'there is a problem with status code ${response.statusCode}');
+    for (int i = 0; i < data.length; i++) {
+      ProductList.add(ProductModel.fromJson(data[i]));
     }
 
+    return ProductList;
     // same the above
     // data.forEach(
     //   (element) {
