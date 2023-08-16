@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:store_app/models/product_model.dart';
 
 class CustomCard extends StatelessWidget {
-  const CustomCard({super.key});
+  CustomCard({super.key, required this.products});
+
+  ProductModel products;
 
   @override
   Widget build(BuildContext context) {
@@ -33,27 +36,29 @@ class CustomCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'HandBag Lv',
-                    style: TextStyle(
+                  Text(
+                    products.title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
                       color: Colors.grey,
                       fontSize: 16.0,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 3,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        r'$225',
-                        style: TextStyle(
+                        r'$' '${products.price}',
+                        style: const TextStyle(
                           color: Colors.black,
                           fontSize: 16.0,
                         ),
                       ),
-                      Icon(
+                      const Icon(
                         Icons.favorite,
                         color: Colors.red,
                       )
@@ -68,8 +73,9 @@ class CustomCard extends StatelessWidget {
           right: 32.0,
           top: -60.0,
           child: Image.network(
-            'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+            products.image,
             height: 100.0,
+            width: 100.0,
           ),
         ),
       ],
