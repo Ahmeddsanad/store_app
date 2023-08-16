@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:store_app/widgets/custom_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -31,73 +32,22 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       body: Center(
-        child: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            Container(
-              height: 130,
-              width: 220,
-              decoration: BoxDecoration(boxShadow: [
-                BoxShadow(
-                    blurRadius: 40,
-                    color: Colors.grey.withOpacity(0.2),
-                    spreadRadius: 0,
-                    offset: Offset(
-                      10,
-                      10,
-                    )),
-              ]),
-              child: Card(
-                elevation: 10,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 16,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'HandBag Lv',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 16.0,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            r'$225',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                            ),
-                          ),
-                          Icon(
-                            Icons.favorite,
-                            color: Colors.red,
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              ),
+        child: Padding(
+          padding: const EdgeInsets.only(
+            top: 65,
+            left: 16,
+            right: 16,
+          ),
+          child: GridView.builder(
+            clipBehavior: Clip.none,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 1.5,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 100,
             ),
-            Positioned(
-              right: 32.0,
-              top: -65.0,
-              child: Image.network(
-                'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
-                height: 100.0,
-              ),
-            ),
-          ],
+            itemBuilder: (context, index) => const CustomCard(),
+          ),
         ),
       ),
     );
