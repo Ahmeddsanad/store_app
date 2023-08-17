@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
-Widget TextFormFieldItem({
-  required String text,
-  TextEditingController? controller,
-  Function(String)? onChanged,
-  String? Function(String?)? validator,
-  bool isObscureText = false,
-  bool isPasswordField = false,
-  Widget? SuffixIcon,
-}) {
+Widget TextFormFieldItem(
+    {required String text,
+    TextEditingController? controller,
+    Function(String)? onChanged,
+    String? Function(String?)? validator,
+    bool isObscureText = false,
+    bool isPasswordField = false,
+    Widget? SuffixIcon,
+    TextInputType? keyboardType}) {
   return TextFormField(
+    keyboardType: keyboardType,
     obscureText: isObscureText,
     onChanged: onChanged,
     validator: validator,

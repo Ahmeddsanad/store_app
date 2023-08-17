@@ -4,9 +4,12 @@ import 'package:store_app/widgets/custom_buttonItem.dart';
 import 'package:store_app/widgets/custom_textformfield.dart';
 
 class UpdateScreen extends StatelessWidget {
-  const UpdateScreen({super.key});
+  UpdateScreen({super.key});
 
   static String id = 'UpdateProduct';
+
+  String? pName, pDesc, pImage;
+  int? pPrice;
 
   @override
   Widget build(BuildContext context) {
@@ -35,39 +38,56 @@ class UpdateScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextFormFieldItem(
-              text: 'Product Name',
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            TextFormFieldItem(
-              text: 'Product Description',
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            TextFormFieldItem(
-              text: 'Product Price',
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            TextFormFieldItem(
-              text: 'Product Image',
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            ButtonItem(
-              text: 'Update',
-              function: () {},
-              horizontalSymmetric: 150,
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 100,
+              ),
+              TextFormFieldItem(
+                onChanged: (data) {
+                  pName = data;
+                },
+                text: 'Product Name',
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextFormFieldItem(
+                onChanged: (data) {
+                  pDesc = data;
+                },
+                text: 'Product Description',
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextFormFieldItem(
+                onChanged: (data) {
+                  pPrice = int.parse(data);
+                },
+                text: 'Product Price',
+                keyboardType: TextInputType.number,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextFormFieldItem(
+                onChanged: (data) {
+                  pImage = data;
+                },
+                text: 'Product Image',
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              ButtonItem(
+                text: 'Update',
+                function: () {},
+                horizontalSymmetric: 150,
+              ),
+            ],
+          ),
         ),
       ),
     );
