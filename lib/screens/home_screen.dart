@@ -49,7 +49,8 @@ class HomeScreen extends StatelessWidget {
                   return GridView.builder(
                     physics: const BouncingScrollPhysics(),
                     clipBehavior: Clip.none,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 1.5,
                       crossAxisSpacing: 10,
@@ -61,8 +62,8 @@ class HomeScreen extends StatelessWidget {
                     itemCount: products.length,
                   );
                 } else {
-                  print(AllProductsService().getAllProduct());
-                  return Center(
+                  // print(AllProductsService().getAllProduct());
+                  return const Center(
                       heightFactor: 30,
                       child: CircularProgressIndicator(
                         color: Colors.black,
