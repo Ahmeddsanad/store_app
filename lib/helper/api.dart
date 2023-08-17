@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
-class api {
+class Api {
   Future<dynamic> get({required String url, String? token}) async {
     Map<String, String> headers = {};
 
@@ -65,8 +65,8 @@ class api {
         'Authorization': 'Bearer $token',
       });
     }
-
-    http.Response response = await http.post(
+    print('url $url -- body $body -- token $token');
+    http.Response response = await http.put(
       Uri.parse(url),
       body: body,
       headers: headers,
@@ -75,6 +75,7 @@ class api {
     if (response.statusCode == 200) {
       Map<String, dynamic> data = jsonDecode(response.body);
 
+      print(data);
       return data;
     } else {
       throw Exception(

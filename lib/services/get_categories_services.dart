@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 class GetCategoriesServices {
   Future<List<ProductModel>> getCategories(
       {required String CategoryName}) async {
-    List<dynamic> data = await api()
+    List<dynamic> data = await Api()
         .get(url: 'https://fakestoreapi.com/products/category/$CategoryName');
 
     List<ProductModel> productList = [];

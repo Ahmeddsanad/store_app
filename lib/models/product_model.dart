@@ -5,7 +5,7 @@ class ProductModel {
   final String description;
   final String category;
   final String image;
-  final RatingModel rating;
+  final RatingModel? rating;
 
   ProductModel(
       {required this.title,
@@ -24,7 +24,9 @@ class ProductModel {
       description: jsonData['description'],
       price: jsonData['price'],
       title: jsonData['title'],
-      rating: RatingModel.fromJson(jsonData['rating']),
+      rating: jsonData['rating'] == null
+          ? null
+          : RatingModel.fromJson(jsonData['rating']),
     );
   }
 }
